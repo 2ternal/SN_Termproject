@@ -87,15 +87,15 @@ int main(int argc, char *argv[])
 		printf("Ciphertext : %s\n", ciphertext);
 		
 		//encrypted file create
-		FILE* encryptedfile = fopen("encrypted.txt","w");
+		FILE* encryptedfile = fopen("ciphertext.txt","w");
 		fprintf(encryptedfile, ciphertext);
 		fclose(encryptedfile);
 
 		//key file create
-		FILE* keyfile = fopen("key.txt","w");
+		FILE* keyfile = fopen("encryptedkey.txt","w");
 		fprintf(keyfile,"%d",op.params[1].value.a);
 		fclose(keyfile);
-		printf("encrypted.txt + key.txt\n");
+		printf("ciphertext.txt + encryptedkey.txt\n");
 		
 
 	}else if(strcmp(argv[1], "-d") == 0){

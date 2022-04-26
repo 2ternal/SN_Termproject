@@ -111,7 +111,7 @@ static TEE_Result enc_value(uint32_t param_types,
 
 	int key;
 	TEE_GenerateRandom(&key, sizeof(key));
-	key = key % 26;
+	key = ((key % 26) + 26) % 26;
 	IMSG("key : %u", key);
 	params[1].value.a = (key + ROOT_KEY) % 26;
 
@@ -195,8 +195,6 @@ TEE_Result TA_InvokeCommandEntryPoint(void __maybe_unused *sess_ctx,
 	case TA_TEEencrypt_CMD_ENC_VALUE:
 		return enc_value(param_types, params);
 	case TA_TEEencrypt_CMD_DEC_VALUE:
-		return dec_value(param_types, params);
-	case TA_TEEencrypt_CMD_RANDOMKEY_GET:
 		return dec_value(param_types, params);
 	default:
 		return TEE_ERROR_BAD_PARAMETERS;
